@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
+             x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.QuanlyMon"
+             x:Name="page"
+             Title="Quản lý môn">
+
+    <ContentPage.BindingContext>
+        <vm:QuanlyMon/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <SearchBar Placeholder="Tìm môn học..."
+                   Text="{Binding SearchText}" />
+
+        <HorizontalStackLayout Spacing="10">
+            <Entry Placeholder="Tên môn"
+                   Text="{Binding TenMon}"
+                   HorizontalOptions="FillAndExpand"/>
+
+            <Button Text="+"
+                    WidthRequest="50"
+                    Command="{Binding AddCommand}"/>
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding DanhsachMon_Filter}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Xóa"
+                                           BackgroundColor="Red"
+                                           Command="{Binding BindingContext.DeleteCommand,
+                                                             Source={x:Reference page}}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border Style="{StaticResource AdminCard}">
+                            <Label Text="{Binding Tenmh}" FontSize="17"/>
+                        </Border>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

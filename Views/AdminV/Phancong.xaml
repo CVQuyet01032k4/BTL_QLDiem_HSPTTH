@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
+             x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.Phancong"
+             x:Name="page"
+             Title="Phân công giảng dạy">
+
+    <ContentPage.BindingContext>
+        <vm:QuanlyPhancong/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <Picker Title="Giáo viên"
+                ItemsSource="{Binding DanhsachGV}"
+                SelectedItem="{Binding GVSelected}"
+                ItemDisplayBinding="{Binding Hoten}" />
+
+        <Picker Title="Lớp"
+                ItemsSource="{Binding DanhsachLop}"
+                SelectedItem="{Binding LopSelected}"
+                ItemDisplayBinding="{Binding Tenlop}" />
+
+        <Picker Title="Môn dạy"
+                ItemsSource="{Binding DanhsachMon}"
+                SelectedItem="{Binding MonSelected}"
+                ItemDisplayBinding="{Binding Tenmh}" />
+
+        <Button Text="Thêm phân công"
+                Command="{Binding AddCommand}" />
+
+        <CollectionView ItemsSource="{Binding DanhsachPC}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Xóa"
+                                           BackgroundColor="Red"
+                                           Command="{Binding BindingContext.DeleteCommand,
+                                                             Source={x:Reference page}}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border Style="{StaticResource AdminCard}">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding GiaovienId, StringFormat='GV: {0}'}" />
+                                <Label Text="{Binding LophocId, StringFormat='Lớp: {0}'}" />
+                                <Label Text="{Binding MonhocId, StringFormat='Môn: {0}'}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

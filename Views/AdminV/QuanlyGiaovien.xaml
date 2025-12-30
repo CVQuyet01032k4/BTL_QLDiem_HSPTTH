@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
+             x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.QuanlyGiaovien"
+             x:Name="page"
+             Title="Quản lý giáo viên">
+
+    <ContentPage.BindingContext>
+        <vm:QuanlyGiaovien />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <SearchBar Placeholder="Tìm giáo viên..."
+                   Text="{Binding SearchText}" />
+
+        <Entry Placeholder="Họ tên"
+               Text="{Binding Hoten}" />
+
+        <Picker Title="Môn dạy"
+                ItemsSource="{Binding DanhsachMon}"
+                ItemDisplayBinding="{Binding Tenmh}"
+                SelectedItem="{Binding MonSelected}" />
+
+        <Button Text="Thêm giáo viên"
+                Command="{Binding AddCommand}" />
+
+        <CollectionView ItemsSource="{Binding DanhsachGV_Filter}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Xóa"
+                                           BackgroundColor="Red"
+                                           Command="{Binding BindingContext.DeleteCommand,
+                                                             Source={x:Reference page}}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border Style="{StaticResource AdminCard}">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Hoten}" FontSize="17"/>
+                                <Label Text="{Binding MonhocId}" FontSize="14" TextColor="#666"/>
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

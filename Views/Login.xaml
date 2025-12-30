@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTL_QLDiem_HSPTTH.Views.Login"
+    Title="Đăng nhập"
+    BackgroundColor="#F4F6F8">
+
+    <VerticalStackLayout 
+        Padding="30"
+        VerticalOptions="Center">
+
+        <Label Text="QUẢN LÝ ĐIỂM HỌC SINH"
+               FontSize="22"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#0A66FF"
+               Margin="0,0,0,30"/>
+
+        <Border Stroke="#0A66FF"
+                StrokeThickness="1.2"
+                StrokeShape="RoundRectangle 15"
+                Padding="20"
+                BackgroundColor="White">
+
+            <VerticalStackLayout Spacing="18">
+
+                <Entry Placeholder="Tên đăng nhập"
+                       Text="{Binding Username}"
+                       ClearButtonVisibility="WhileEditing" />
+
+                <Entry Placeholder="Mật khẩu"
+                       IsPassword="True"
+                       Text="{Binding Password}" />
+
+                <Button Text="Đăng nhập"
+                        BackgroundColor="#0A66FF"
+                        TextColor="White"
+                        HeightRequest="45"
+                        FontAttributes="Bold"
+                        CornerRadius="10"
+                        Command="{Binding LoginCommand}" />
+
+                <Label Text="{Binding ErrorMessage}"
+                       TextColor="Red"
+                       FontSize="12"
+                       HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+        </Border>
+    </VerticalStackLayout>
+
+</ContentPage>

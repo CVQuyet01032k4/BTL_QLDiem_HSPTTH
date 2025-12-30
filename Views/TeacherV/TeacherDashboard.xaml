@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BTL_QLDiem_HSPTTH.Views.TeacherV.TeacherDashboard"
+    BackgroundColor="#F2F6FF">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Header -->
+            <HorizontalStackLayout Spacing="12">
+
+                <Border BackgroundColor="#FF8A00"
+                        WidthRequest="48"
+                        HeightRequest="48"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 24">
+                    <Label x:Name="Avatar"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+                </Border>
+
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="TenUser"
+                           FontSize="15"
+                           TextColor="#FF8A00"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="VaiTro"
+                           Text="Giáo viên"
+                           FontSize="13"
+                           TextColor="#555"/>
+                </VerticalStackLayout>
+
+                <Button Text=""
+                        FontFamily="MaterialSymbolsRounded"
+                        FontSize="26"
+                        BackgroundColor="Transparent"
+                        TextColor="Red"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="Logout_Clicked"/>
+            </HorizontalStackLayout>
+
+
+            <!-- Menu Tiles -->
+            <Grid ColumnDefinitions="*,*,*"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="20"
+                  RowSpacing="20">
+
+                <!-- Nhập điểm -->
+                <Border Grid.Row="0" Grid.Column="0"
+                        StrokeThickness="0" BackgroundColor="White"
+                        Padding="10" StrokeShape="RoundRectangle 16"
+                        >
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
+                        <Label Text="Nhập điểm" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Nhapdiem_Tapped"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Lớp phụ trách -->
+                <Border Grid.Row="0" Grid.Column="1"
+                        StrokeThickness="0" BackgroundColor="White"
+                        Padding="10" StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
+                        <Label Text="Lớp phụ trách" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Lophutrach_Tapped"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- Thông báo -->
+                <Border Grid.Row="0" Grid.Column="2"
+                        StrokeThickness="0" BackgroundColor="White"
+                        Padding="10" StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
+                        <Label Text="Thông báo" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ThongBao_Tapped"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

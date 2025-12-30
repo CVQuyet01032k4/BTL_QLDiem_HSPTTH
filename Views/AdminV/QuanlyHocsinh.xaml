@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
+             x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.QuanlyHocsinh"
+             x:Name="page"
+             Title="Quản lý học sinh">
+
+    <ContentPage.BindingContext>
+        <vm:QuanlyHocsinh />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+
+        <SearchBar Placeholder="Tìm học sinh..."
+                   Text="{Binding SearchText}" />
+
+        <Entry Placeholder="Họ tên"
+               Text="{Binding Hoten}" />
+
+        <HorizontalStackLayout Spacing="10">
+            <Picker Title="Giới tính"
+                    SelectedItem="{Binding Gioitinh}">
+                <Picker.Items>
+                    <x:String>Nam</x:String>
+                    <x:String>Nữ</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Picker Title="Lớp"
+                    ItemsSource="{Binding DanhsachLop}"
+                    SelectedItem="{Binding LopSelected}"
+                    ItemDisplayBinding="{Binding Tenlop}" />
+        </HorizontalStackLayout>
+
+        <DatePicker Date="{Binding Ngaysinh}"
+                    Format="dd/MM/yyyy"/>
+
+        <Button Text="Thêm học sinh"
+                Command="{Binding AddCommand}" />
+
+        <CollectionView ItemsSource="{Binding DanhsachHS_Filter}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Xóa"
+                                           BackgroundColor="Red"
+                                           Command="{Binding BindingContext.DeleteCommand,
+                                                             Source={x:Reference page}}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border Style="{StaticResource AdminCard}">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Hoten}" FontSize="17"/>
+                                <Label Text="{Binding Gioitinh}" FontSize="14" TextColor="#666"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
