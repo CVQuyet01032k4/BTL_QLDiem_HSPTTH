@@ -4,6 +4,7 @@ using BTL_QLDiem_HSPTTH.Data.Models;
 using BTL_QLDiem_HSPTTH.Data.Services;
 using BTL_QLDiem_HSPTTH.Services;
 using BTL_QLDiem_HSPTTH.Helpers;
+using System;
 
 namespace BTL_QLDiem_HSPTTH.AdminVM
 {
@@ -89,7 +90,8 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
                 Hoten = Hoten,
                 Ngaysinh = Ngaysinh,
                 Gioitinh = Gioitinh,
-                LophocId = LopSelected.Id
+                LophocId = LopSelected.Id,
+                Mahocsinh = $"HS{LopSelected.Id:D4}{DateTime.Now:MMddHHmmss}".Substring(0, 10) // Tự động tạo mã học sinh
             };
 
             _db.AddHocsinh(hs);

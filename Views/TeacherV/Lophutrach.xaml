@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.TeacherVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.TeacherV.Lophutrach"
-             Title="Lophutrach">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Lớp phụ trách"
+             BackgroundColor="#F2F6FF">
+
+    <ContentPage.BindingContext>
+        <vm:LophutrachVM />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Lớp phụ trách" FontSize="24" FontAttributes="Bold" TextColor="#1A1A1A"/>
+
+            <Border Padding="15" BackgroundColor="White" StrokeShape="RoundRectangle 12">
+                <Picker Title="Chọn lớp - môn"
+                        ItemsSource="{Binding DanhsachPhancong}"
+                        SelectedItem="{Binding PhancongSelected}"
+                        SelectedIndexChanged="Picker_Changed" />
+            </Border>
+
+            <Label FontSize="16" FontAttributes="Bold" Margin="0,10,0,5" TextColor="#1A1A1A">
+                <Label.Text>
+                    <MultiBinding StringFormat="Lớp: {0} - Môn: {1}">
+                        <Binding Path="PhancongSelected.TenLop"/>
+                        <Binding Path="PhancongSelected.TenMon"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+
+            <Button Text="Xem danh sách học sinh"
+                    BackgroundColor="#0A66FF"
+                    TextColor="White"
+                    Padding="20,12"
+                    FontSize="16"
+                    Command="{Binding LoadHocsinhCommand}" />
+
+            <Label Text="Danh sách học sinh" FontSize="18" FontAttributes="Bold" Margin="0,10,0,5"/>
+
+            <CollectionView ItemsSource="{Binding DanhsachHocsinh}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="15" Margin="0,5" BackgroundColor="White" StrokeShape="RoundRectangle 12">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <Border Grid.Column="0" 
+                                        WidthRequest="50" 
+                                        HeightRequest="50" 
+                                        BackgroundColor="#E3F2FD" 
+                                        StrokeShape="RoundRectangle 25"
+                                        VerticalOptions="Center">
+                                    <Label Text="{Binding Hoten}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold" 
+                                           TextColor="#0A66FF"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           MaxLines="1"
+                                           LineBreakMode="TailTruncation"/>
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Margin="15,0">
+                                    <Label Text="{Binding Hoten}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Gioitinh}" FontSize="14" TextColor="#666"/>
+                                    <Label Text="{Binding Ngaysinh, StringFormat='Ngày sinh: {0:dd/MM/yyyy}'}" FontSize="13" TextColor="#888"/>
+                                    <Label Text="{Binding Mahocsinh, StringFormat='Mã HS: {0}'}" FontSize="13" TextColor="#888"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

@@ -1,12 +1,218 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.ParentVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.ParentV.ParentDashboard"
-             Title="ParentDashboard">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Trang chủ"
+             BackgroundColor="#F2F6FF">
+
+    <ContentPage.BindingContext>
+        <vm:ParentDashboardVM />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Header -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Tổng quan học tập" FontSize="28" FontAttributes="Bold" TextColor="#1A1A1A"/>
+                <Label Text="Theo dõi kết quả rèn luyện của con trong năm học" FontSize="14" TextColor="#666666"/>
+            </VerticalStackLayout>
+
+            <!-- Summary Cards -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15" RowSpacing="15">
+                <!-- GPA Card -->
+                <Border Grid.Column="0" Grid.Row="0" 
+                        Padding="20" 
+                        BackgroundColor="White" 
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Điểm trung bình (GPA)" FontSize="13" TextColor="#666666"/>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding DiemTrungBinh, StringFormat='{0:F1}'}" 
+                                   FontSize="32" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#0A66FF"/>
+                            <Label Text="+0.2" FontSize="14" TextColor="#10B981" VerticalOptions="Center" Margin="8,0,0,0"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Học lực Card -->
+                <Border Grid.Column="1" Grid.Row="0" 
+                        Padding="20" 
+                        BackgroundColor="White" 
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Học lực" FontSize="13" TextColor="#666666"/>
+                        <Label Text="{Binding HocLuc}" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               TextColor="#F59E0B"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Hạnh kiểm Card -->
+                <Border Grid.Column="0" Grid.Row="1" 
+                        Padding="20" 
+                        BackgroundColor="White" 
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Hạnh kiểm" FontSize="13" TextColor="#666666"/>
+                        <Label Text="{Binding HanhKiem}" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               TextColor="#10B981"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Vắng Card -->
+                <Border Grid.Column="1" Grid.Row="1" 
+                        Padding="20" 
+                        BackgroundColor="White" 
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Vắng (có phép)" FontSize="13" TextColor="#666666"/>
+                        <Label Text="{Binding SoVangCoPhep, StringFormat='{0} buổi'}" 
+                               FontSize="24" 
+                               FontAttributes="Bold" 
+                               TextColor="#EF4444"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Điểm số mới cập nhật -->
+            <VerticalStackLayout Spacing="10" Margin="0,10,0,0">
+                <Grid>
+                    <Label Text="Điểm số mới cập nhật" FontSize="20" FontAttributes="Bold"/>
+                    <Label Text="Xem tất cả" 
+                           FontSize="14" 
+                           TextColor="#0A66FF" 
+                           HorizontalOptions="End" 
+                           VerticalOptions="Center"/>
+                </Grid>
+
+                <Border Padding="0" BackgroundColor="White" StrokeShape="RoundRectangle 12">
+                    <CollectionView ItemsSource="{Binding DanhsachDiemMon}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="15" ColumnDefinitions="Auto,*,Auto,Auto,Auto,Auto">
+                                    <Label Grid.Column="0" 
+                                           Text="{Binding Mon.Tenmh}" 
+                                           FontSize="15" 
+                                           FontAttributes="Bold"
+                                           VerticalOptions="Center"
+                                           WidthRequest="100"/>
+                                    <Label Grid.Column="1" 
+                                           Text="{Binding DiemMiemgStr}" 
+                                           FontSize="14" 
+                                           TextColor="#666666"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"/>
+                                    <Label Grid.Column="2" 
+                                           Text="{Binding Diem15PhutStr}" 
+                                           FontSize="14" 
+                                           TextColor="#666666"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           WidthRequest="80"/>
+                                    <Label Grid.Column="3" 
+                                           Text="{Binding Diem1TietStr}" 
+                                           FontSize="14" 
+                                           TextColor="#666666"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           WidthRequest="80"/>
+                                    <Label Grid.Column="4" 
+                                           Text="{Binding DiemThiStr}" 
+                                           FontSize="14" 
+                                           TextColor="#666666"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           WidthRequest="60"/>
+                                    <Label Grid.Column="5" 
+                                           Text="{Binding DiemTrungBinhStr}" 
+                                           FontSize="15" 
+                                           FontAttributes="Bold"
+                                           TextColor="#0A66FF"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           WidthRequest="70"/>
+                                    
+                                    <BoxView Grid.ColumnSpan="6" 
+                                             Grid.Row="1" 
+                                             HeightRequest="1" 
+                                             Color="#E5E7EB" 
+                                             Margin="0,10,0,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Thông tin học sinh -->
+            <Border Padding="20" BackgroundColor="White" StrokeShape="RoundRectangle 16" Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Thông tin học sinh" FontSize="18" FontAttributes="Bold" Margin="0,0,0,5"/>
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Label Text="Họ tên:" FontSize="15" TextColor="#666666" Grid.Column="0"/>
+                        <Label Text="{Binding Hocsinh.Hoten}" FontSize="15" FontAttributes="Bold" Grid.Column="1" Margin="10,0,0,0"/>
+                        
+                        <Label Text="Lớp:" FontSize="15" TextColor="#666666" Grid.Column="0" Grid.Row="1" Margin="0,8,0,0"/>
+                        <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="10,8,0,0" Spacing="2">
+                            <Label Text="{Binding Lop.Tenlop}" FontSize="15" FontAttributes="Bold"/>
+                            <Label FontSize="14" TextColor="#666666">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="GVCN: {1}">
+                                        <Binding Path="Lop.Tenlop"/>
+                                        <Binding Path="GiaoVienCN.Hoten"/>
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Thông báo mới -->
+            <VerticalStackLayout Spacing="10" Margin="0,10,0,0">
+                <HorizontalStackLayout>
+                    <Label Text="Thông báo mới" FontSize="20" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#EF4444" 
+                            StrokeShape="RoundRectangle 10" 
+                            Padding="6,2"
+                            Margin="10,0,0,0"
+                            IsVisible="{Binding DanhsachThongbao.Count, Converter={StaticResource IntToBoolConverter}}">
+                        <Label Text="{Binding DanhsachThongbao.Count}" 
+                               FontSize="12" 
+                               TextColor="White" 
+                               FontAttributes="Bold"/>
+                    </Border>
+                </HorizontalStackLayout>
+
+                <CollectionView ItemsSource="{Binding DanhsachThongbao}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="15" Margin="0,5" BackgroundColor="White" StrokeShape="RoundRectangle 12">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="{Binding TieuDe}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding NoiDung}" 
+                                           FontSize="14" 
+                                           TextColor="#666666"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="2"/>
+                                    <Label Text="{Binding NgayTao, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
+                                           FontSize="12" 
+                                           TextColor="#888888"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

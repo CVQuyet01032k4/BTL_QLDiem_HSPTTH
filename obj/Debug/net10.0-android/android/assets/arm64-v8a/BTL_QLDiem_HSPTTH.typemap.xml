@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="BTL_QLDiem_HSPTTH" mvid="da3d50eb25c4411fa823d73d82733ed7">
+  <java-to-managed>
+    <entry java-name="crc646b64f18950d3e580/MainActivity" managed-name="BTL_QLDiem_HSPTTH.MainActivity, BTL_QLDiem_HSPTTH" managed-type-token-id="33554452" />
+    <entry java-name="crc646b64f18950d3e580/MainApplication" managed-name="BTL_QLDiem_HSPTTH.MainApplication, BTL_QLDiem_HSPTTH" managed-type-token-id="33554453" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc646b64f18950d3e580/MainActivity" managed-name="BTL_QLDiem_HSPTTH.MainActivity, BTL_QLDiem_HSPTTH" managed-type-token-id="33554452" />
+    <entry java-name="crc646b64f18950d3e580/MainApplication" managed-name="BTL_QLDiem_HSPTTH.MainApplication, BTL_QLDiem_HSPTTH" managed-type-token-id="33554453" />
+  </managed-to-java>
+</api>

@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.TeacherVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.TeacherV.Thongbao"
-             Title="Thongbao">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Name="page"
+             Title="Thông báo"
+             BackgroundColor="#F2F6FF">
+
+    <ContentPage.BindingContext>
+        <vm:ThongbaoVM />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Entry Placeholder="Tiêu đề"
+                   Text="{Binding TieuDe}" />
+
+            <Editor Placeholder="Nội dung"
+                    Text="{Binding NoiDung}"
+                    HeightRequest="100" />
+
+            <Picker Title="Gửi đến lớp (tùy chọn)"
+                    ItemsSource="{Binding DanhsachLop}"
+                    SelectedItem="{Binding LopSelected}"
+                    ItemDisplayBinding="{Binding Tenlop}"
+                    SelectedIndexChanged="Picker_LopChanged" />
+
+            <Picker Title="Gửi đến học sinh (tùy chọn)"
+                    ItemsSource="{Binding DanhsachHocsinh}"
+                    SelectedItem="{Binding HocsinhSelected}"
+                    ItemDisplayBinding="{Binding Hoten}" />
+
+            <Button Text="Gửi thông báo"
+                    BackgroundColor="#0A66FF"
+                    TextColor="White"
+                    Command="{Binding AddCommand}" />
+
+            <Label Text="Danh sách thông báo"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10" />
+
+            <CollectionView ItemsSource="{Binding DanhsachThongbao}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Xóa"
+                                               BackgroundColor="Red"
+                                               Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Border Padding="15" Margin="0,5" BackgroundColor="White" StrokeShape="RoundRectangle 10">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding TieuDe}" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding NoiDung}" FontSize="14" TextColor="#666"/>
+                                    <Label Text="{Binding NgayTao, StringFormat='Ngày: {0:dd/MM/yyyy HH:mm}'}" FontSize="12" TextColor="#888"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

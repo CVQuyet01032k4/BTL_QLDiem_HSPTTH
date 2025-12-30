@@ -4,60 +4,98 @@
              xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.Phancong"
              x:Name="page"
-             Title="Phân công giảng dạy">
+             Title="Phân công giảng dạy"
+             BackgroundColor="#F2F6FF">
 
     <ContentPage.BindingContext>
         <vm:QuanlyPhancong/>
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20" Spacing="12">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Picker Title="Giáo viên"
-                ItemsSource="{Binding DanhsachGV}"
-                SelectedItem="{Binding GVSelected}"
-                ItemDisplayBinding="{Binding Hoten}" />
+            <!-- Form thêm phân công -->
+            <Border Padding="20" 
+                    BackgroundColor="White" 
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Phân công giáo viên" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#0A66FF"/>
 
-        <Picker Title="Lớp"
-                ItemsSource="{Binding DanhsachLop}"
-                SelectedItem="{Binding LopSelected}"
-                ItemDisplayBinding="{Binding Tenlop}" />
+                    <Picker Title="Giáo viên"
+                            ItemsSource="{Binding DanhsachGV}"
+                            SelectedItem="{Binding GVSelected}"
+                            ItemDisplayBinding="{Binding Hoten}"
+                            HeightRequest="45" />
 
-        <Picker Title="Môn dạy"
-                ItemsSource="{Binding DanhsachMon}"
-                SelectedItem="{Binding MonSelected}"
-                ItemDisplayBinding="{Binding Tenmh}" />
+                    <Picker Title="Lớp"
+                            ItemsSource="{Binding DanhsachLop}"
+                            SelectedItem="{Binding LopSelected}"
+                            ItemDisplayBinding="{Binding Tenlop}"
+                            HeightRequest="45" />
 
-        <Button Text="Thêm phân công"
-                Command="{Binding AddCommand}" />
+                    <Picker Title="Môn dạy"
+                            ItemsSource="{Binding DanhsachMon}"
+                            SelectedItem="{Binding MonSelected}"
+                            ItemDisplayBinding="{Binding Tenmh}"
+                            HeightRequest="45" />
 
-        <CollectionView ItemsSource="{Binding DanhsachPC}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
+                    <Button Text="Thêm phân công"
+                            BackgroundColor="#0A66FF"
+                            TextColor="White"
+                            HeightRequest="45"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            Command="{Binding AddCommand}" />
+                </VerticalStackLayout>
+            </Border>
 
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Xóa"
-                                           BackgroundColor="Red"
-                                           Command="{Binding BindingContext.DeleteCommand,
-                                                             Source={x:Reference page}}"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
+            <!-- Danh sách -->
+            <Label Text="Danh sách phân công" 
+                   FontSize="16" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
 
-                        <Border Style="{StaticResource AdminCard}">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding GiaovienId, StringFormat='GV: {0}'}" />
-                                <Label Text="{Binding LophocId, StringFormat='Lớp: {0}'}" />
-                                <Label Text="{Binding MonhocId, StringFormat='Môn: {0}'}" />
-                            </VerticalStackLayout>
-                        </Border>
+            <CollectionView ItemsSource="{Binding DanhsachPC}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Xóa"
+                                               BackgroundColor="#FF3B30"
+                                               Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            <Border Padding="15" 
+                                    Margin="0,5" 
+                                    BackgroundColor="White" 
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="0">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="{Binding TenGiaovien, StringFormat='Giáo viên: {0}'}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold"
+                                           TextColor="#333"/>
+                                    <Label Text="{Binding TenLop, StringFormat='Lớp: {0}'}" 
+                                           FontSize="14" 
+                                           TextColor="#666"/>
+                                    <Label Text="{Binding TenMon, StringFormat='Môn: {0}'}" 
+                                           FontSize="14" 
+                                           TextColor="#666"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

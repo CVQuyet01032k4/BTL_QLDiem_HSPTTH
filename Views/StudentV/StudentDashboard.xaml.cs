@@ -47,7 +47,7 @@ namespace BTL_QLDiem_HSPTTH.Views.StudentV
         private async void ThongBao_Tapped(object sender, TappedEventArgs e)
         {
             await Tap((View)sender);
-            await Navigation.PushAsync(new Thongbao());
+            await Navigation.PushAsync(new TeacherV.Thongbao());
         }
     }
 }

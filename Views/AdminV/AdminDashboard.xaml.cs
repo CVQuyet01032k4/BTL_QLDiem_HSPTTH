@@ -56,6 +56,12 @@ namespace BTL_QLDiem_HSPTTH.Views.AdminV
             await Navigation.PushAsync(new QuanlyHocsinh());
         }
 
+        private async void Go_Phancong(object sender, TappedEventArgs e)
+        {
+            await Tap((View)sender);
+            await Navigation.PushAsync(new Phancong());
+        }
+
         private async void Go_Baocao(object sender, TappedEventArgs e)
         {
             await Tap((View)sender);

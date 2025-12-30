@@ -4,51 +4,107 @@
              xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.QuanlyMon"
              x:Name="page"
-             Title="Quản lý môn">
+             Title="Quản lý môn học"
+             BackgroundColor="#F2F6FF">
 
     <ContentPage.BindingContext>
         <vm:QuanlyMon/>
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20" Spacing="12">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <SearchBar Placeholder="Tìm môn học..."
-                   Text="{Binding SearchText}" />
+            <!-- Form thêm môn -->
+            <Border Padding="20" 
+                    BackgroundColor="White" 
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Thêm môn học mới" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#0A66FF"/>
 
-        <HorizontalStackLayout Spacing="10">
-            <Entry Placeholder="Tên môn"
-                   Text="{Binding TenMon}"
-                   HorizontalOptions="FillAndExpand"/>
+                    <HorizontalStackLayout Spacing="10">
+                        <Entry Placeholder="Tên môn học"
+                               Text="{Binding TenMon}"
+                               HeightRequest="45"
+                               PlaceholderColor="#999"
+                               HorizontalOptions="FillAndExpand"/>
 
-            <Button Text="+"
-                    WidthRequest="50"
-                    Command="{Binding AddCommand}"/>
-        </HorizontalStackLayout>
+                        <Button Text="Thêm"
+                                BackgroundColor="#0A66FF"
+                                TextColor="White"
+                                WidthRequest="80"
+                                HeightRequest="45"
+                                CornerRadius="10"
+                                FontAttributes="Bold"
+                                Command="{Binding AddCommand}"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
 
-        <CollectionView ItemsSource="{Binding DanhsachMon_Filter}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
+            <!-- Search -->
+            <SearchBar Placeholder="Tìm kiếm môn học..."
+                       Text="{Binding SearchText}"
+                       BackgroundColor="White"
+                       CancelButtonColor="#0A66FF"/>
 
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Xóa"
-                                           BackgroundColor="Red"
-                                           Command="{Binding BindingContext.DeleteCommand,
-                                                             Source={x:Reference page}}"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
+            <!-- Danh sách -->
+            <Label Text="Danh sách môn học" 
+                   FontSize="16" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
 
-                        <Border Style="{StaticResource AdminCard}">
-                            <Label Text="{Binding Tenmh}" FontSize="17"/>
-                        </Border>
+            <CollectionView ItemsSource="{Binding DanhsachMon_Filter}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Xóa"
+                                               BackgroundColor="#FF3B30"
+                                               Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                            <Border Padding="15" 
+                                    Margin="0,5" 
+                                    BackgroundColor="White" 
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="0">
+                                <HorizontalStackLayout Spacing="15">
+                                    <Border BackgroundColor="#34C759"
+                                            WidthRequest="45"
+                                            HeightRequest="45"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 22.5"
+                                            HorizontalOptions="Start">
+                                        <Label Text="{Binding Tenmh}"
+                                               TextColor="White"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               TextTransform="Uppercase"
+                                               MaxLines="1"
+                                               CharacterSpacing="0.5"/>
+                                    </Border>
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Tenmh}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold"
+                                               TextColor="#333"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

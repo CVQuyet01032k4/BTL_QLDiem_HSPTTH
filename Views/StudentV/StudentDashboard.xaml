@@ -15,7 +15,6 @@
                         HeightRequest="48"
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 24">
-
                     <Label x:Name="Avatar"
                            TextColor="White"
                            VerticalOptions="Center"
@@ -35,7 +34,7 @@
                            TextColor="#555"/>
                 </VerticalStackLayout>
 
-                <Button Text=""
+                <Button Text="&#xE5CD;"
                         FontFamily="MaterialSymbolsRounded"
                         FontSize="26"
                         BackgroundColor="Transparent"
@@ -44,22 +43,29 @@
                         Clicked="Logout_Clicked"/>
             </HorizontalStackLayout>
 
-
             <!-- Menu -->
-            <Grid ColumnDefinitions="*,*,*"
-                  RowDefinitions="Auto"
-                  ColumnSpacing="20"
-                  RowSpacing="20">
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" ColumnSpacing="15" RowSpacing="15">
 
                 <!-- Xem điểm -->
                 <Border Grid.Row="0" Grid.Column="0"
-                        StrokeThickness="0"
+                        Padding="20"
                         BackgroundColor="White"
-                        Padding="10"
-                        StrokeShape="RoundRectangle 16">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Xem điểm" FontAttributes="Bold"/>
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#0A66FF"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE873;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Xem điểm" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Xemdiem_Tapped"/>
@@ -68,13 +74,24 @@
 
                 <!-- Biểu đồ -->
                 <Border Grid.Row="0" Grid.Column="1"
-                        StrokeThickness="0"
+                        Padding="20"
                         BackgroundColor="White"
-                        Padding="10"
-                        StrokeShape="RoundRectangle 16">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Biểu đồ" FontAttributes="Bold"/>
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#FF2D55"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE24A;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Biểu đồ" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Bieudo_Tapped"/>
@@ -83,13 +100,24 @@
 
                 <!-- Thông báo -->
                 <Border Grid.Row="0" Grid.Column="2"
-                        StrokeThickness="0"
+                        Padding="20"
                         BackgroundColor="White"
-                        Padding="10"
-                        StrokeShape="RoundRectangle 16">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Thông báo" FontAttributes="Bold"/>
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#34C759"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE7C7;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Thông báo" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ThongBao_Tapped"/>

@@ -4,6 +4,7 @@ using BTL_QLDiem_HSPTTH.Data.Models;
 using BTL_QLDiem_HSPTTH.Data.Services;
 using BTL_QLDiem_HSPTTH.Services;
 using BTL_QLDiem_HSPTTH.Helpers;
+using System.Linq;
 
 namespace BTL_QLDiem_HSPTTH.AdminVM
 {
@@ -12,7 +13,7 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
         private readonly DatabaseService _db;
         private readonly ToastService _toast;
 
-        public ObservableCollection<Phancong> DanhsachPC { get; set; } = new();
+        public ObservableCollection<PhancongDisplay> DanhsachPC { get; set; } = new();
         public ObservableCollection<Giaovien> DanhsachGV { get; set; } = new();
         public ObservableCollection<Lophoc> DanhsachLop { get; set; } = new();
         public ObservableCollection<Monhoc> DanhsachMon { get; set; } = new();
@@ -30,7 +31,7 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
             _toast = App.Current.Handler.MauiContext.Services.GetService<ToastService>();
 
             AddCommand = new Command(Add);
-            DeleteCommand = new Command<Phancong>(Delete);
+            DeleteCommand = new Command<PhancongDisplay>(Delete);
 
             LoadData();
         }
@@ -39,7 +40,18 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
         {
             DanhsachPC.Clear();
             foreach (var pc in _db.GetAllPhancong())
-                DanhsachPC.Add(pc);
+            {
+                var gv = _db.GetGiaovienById(pc.GiaovienId);
+                var lop = _db.GetLophocById(pc.LophocId);
+                var mon = _db.GetMonById(pc.MonhocId);
+                DanhsachPC.Add(new PhancongDisplay
+                {
+                    Phancong = pc,
+                    TenGiaovien = gv?.Hoten ?? "",
+                    TenLop = lop?.Tenlop ?? "",
+                    TenMon = mon?.Tenmh ?? ""
+                });
+            }
 
             DanhsachGV.Clear();
             foreach (var gv in _db.GetAllGiaovien())
@@ -81,14 +93,22 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
             await _toast.ShowSuccess("Thêm thành công!");
         }
 
-        async void Delete(Phancong pc)
+        async void Delete(PhancongDisplay pcDisplay)
         {
             if (!await DialogHelper.Confirm("Xoá phân công này?")) return;
 
-            _db.DeletePhancong(pc);
+            _db.DeletePhancong(pcDisplay.Phancong);
             LoadData();
 
             await _toast.ShowSuccess("Đã xoá!");
         }
+    }
+
+    public class PhancongDisplay
+    {
+        public Phancong Phancong { get; set; }
+        public string TenGiaovien { get; set; }
+        public string TenLop { get; set; }
+        public string TenMon { get; set; }
     }
 }

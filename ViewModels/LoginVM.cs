@@ -3,6 +3,7 @@ using BTL_QLDiem_HSPTTH.Services;
 using BTL_QLDiem_HSPTTH.Views.AdminV;
 using BTL_QLDiem_HSPTTH.Views.TeacherV;
 using BTL_QLDiem_HSPTTH.Views.StudentV;
+using BTL_QLDiem_HSPTTH.Views.ParentV;
 using System.Windows.Input;
 
 namespace BTL_QLDiem_HSPTTH.ViewModels
@@ -49,6 +50,9 @@ namespace BTL_QLDiem_HSPTTH.ViewModels
                     break;
                 case Role.Student:
                     dashboard = new StudentDashboard();
+                    break;
+                case Role.Parent:
+                    dashboard = new ParentDashboard();
                     break;
             }
 

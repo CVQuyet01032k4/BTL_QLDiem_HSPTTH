@@ -14,8 +14,10 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
 
         public ObservableCollection<Lophoc> DanhsachLop { get; set; }
         public ObservableCollection<Lophoc> DanhsachLop_Filter { get; set; }
+        public ObservableCollection<Khoid> DanhsachKhoid { get; set; }
 
         public string TenLop { get; set; }
+        public Khoid KhoidSelected { get; set; }
         public string SearchText
         {
             get => _searchText;
@@ -33,11 +35,21 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
 
             DanhsachLop = new ObservableCollection<Lophoc>();
             DanhsachLop_Filter = new ObservableCollection<Lophoc>();
+            DanhsachKhoid = new ObservableCollection<Khoid>();
 
             AddCommand = new Command(AddLop);
             DeleteCommand = new Command<Lophoc>(DeleteLop);
 
+            LoadKhoid();
             LoadData();
+        }
+
+        void LoadKhoid()
+        {
+            DanhsachKhoid.Clear();
+            var list = _db.GetAllKhoid();
+            foreach (var item in list)
+                DanhsachKhoid.Add(item);
         }
 
         void LoadData()
@@ -69,15 +81,24 @@ namespace BTL_QLDiem_HSPTTH.AdminVM
                 return;
             }
 
+            if (KhoidSelected == null)
+            {
+                await _toast.ShowError("Vui lòng chọn khối!");
+                return;
+            }
+
             if (_db.GetLopByTen(TenLop) != null)
             {
                 await _toast.ShowError("Lớp đã tồn tại!");
                 return;
             }
 
-            _db.AddLophoc(new Lophoc { Tenlop = TenLop });
+            _db.AddLophoc(new Lophoc { Tenlop = TenLop, KhoidId = KhoidSelected.Id });
 
             TenLop = "";
+            KhoidSelected = null;
+            OnPropertyChanged(nameof(TenLop));
+            OnPropertyChanged(nameof(KhoidSelected));
             LoadData();
 
             await _toast.ShowSuccess("Thêm lớp thành công!");

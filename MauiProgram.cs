@@ -30,18 +30,21 @@ namespace BTL_QLDiem_HSPTTH
     		builder.Logging.AddDebug();
 
 #endif
-            builder.Services.AddSingleton<AuthService>();
             builder.Services.AddSingleton<DatabaseService>();
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<UserSessionService>();
+            builder.Services.AddSingleton<ToastService>();
 
             builder.Services.AddTransient<Login>();
             builder.Services.AddTransient<LoginVM>();
-            builder.Services.AddSingleton<UserSessionService>();
 
-            builder.Services.AddSingleton<QuanlyLop>();
+            // Admin ViewModels - Note: These are instantiated directly in Views, not needed here
+            // But we can register if needed for dependency injection
+            
+            // Teacher ViewModels - Note: These are instantiated directly in Views
+            // Student ViewModels - Note: These are instantiated directly in Views
+            // Parent ViewModels - Note: These are instantiated directly in Views
 
-
-
-            builder.Services.AddSingleton<ToastService>();
             return builder.Build();
         }
     }

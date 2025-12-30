@@ -4,51 +4,106 @@
              xmlns:vm="clr-namespace:BTL_QLDiem_HSPTTH.AdminVM"
              x:Class="BTL_QLDiem_HSPTTH.Views.AdminV.QuanlyLop"
              x:Name="page"
-             Title="Quản lý lớp">
+             Title="Quản lý lớp học"
+             BackgroundColor="#F2F6FF">
 
     <ContentPage.BindingContext>
         <vm:QuanlyLop />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Padding="20" Spacing="12">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <SearchBar Placeholder="Tìm lớp học..."
-                   Text="{Binding SearchText}" />
+            <!-- Form thêm lớp -->
+            <Border Padding="20" 
+                    BackgroundColor="White" 
+                    StrokeShape="RoundRectangle 15"
+                    StrokeThickness="0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Thêm lớp học mới" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#0A66FF"/>
 
-        <HorizontalStackLayout Spacing="10">
-            <Entry Placeholder="Tên lớp"
-                   Text="{Binding TenLop}"
-                   HorizontalOptions="FillAndExpand"/>
+                    <Entry Placeholder="Tên lớp (ví dụ: 10A1)"
+                           Text="{Binding TenLop}"
+                           HeightRequest="45"
+                           PlaceholderColor="#999"/>
 
-            <Button Text="+"
-                    WidthRequest="50"
-                    Command="{Binding AddCommand}"/>
-        </HorizontalStackLayout>
+                    <Picker Title="Chọn khối"
+                            ItemsSource="{Binding DanhsachKhoid}"
+                            SelectedItem="{Binding KhoidSelected}"
+                            ItemDisplayBinding="{Binding Tenkhoi}"
+                            HeightRequest="45"/>
 
-        <CollectionView ItemsSource="{Binding DanhsachLop_Filter}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
+                    <Button Text="Thêm lớp"
+                            BackgroundColor="#0A66FF"
+                            TextColor="White"
+                            HeightRequest="45"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            Command="{Binding AddCommand}"/>
+                </VerticalStackLayout>
+            </Border>
 
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Xóa"
-                                           BackgroundColor="Red"
-                                           Command="{Binding BindingContext.DeleteCommand,
-                                                             Source={x:Reference page}}"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
+            <!-- Search -->
+            <SearchBar Placeholder="Tìm kiếm lớp học..."
+                       Text="{Binding SearchText}"
+                       BackgroundColor="White"
+                       CancelButtonColor="#0A66FF"/>
 
-                        <Border Style="{StaticResource AdminCard}">
-                            <Label Text="{Binding Tenlop}" FontSize="17"/>
-                        </Border>
+            <!-- Danh sách -->
+            <Label Text="Danh sách lớp học" 
+                   FontSize="16" 
+                   FontAttributes="Bold"
+                   Margin="0,10,0,5"/>
 
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <CollectionView ItemsSource="{Binding DanhsachLop_Filter}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Xóa"
+                                               BackgroundColor="#FF3B30"
+                                               Command="{Binding BindingContext.DeleteCommand, Source={x:Reference page}}"
+                                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
 
-    </VerticalStackLayout>
+                            <Border Padding="15" 
+                                    Margin="0,5" 
+                                    BackgroundColor="White" 
+                                    StrokeShape="RoundRectangle 12"
+                                    StrokeThickness="0">
+                                <HorizontalStackLayout Spacing="15">
+                                    <Border BackgroundColor="#7A3FFF"
+                                            WidthRequest="45"
+                                            HeightRequest="45"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 22.5"
+                                            HorizontalOptions="Start">
+                                        <Label Text="{Binding Tenlop}"
+                                               TextColor="White"
+                                               FontSize="14"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Border>
+                                    <VerticalStackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Tenlop}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold"
+                                               TextColor="#333"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>

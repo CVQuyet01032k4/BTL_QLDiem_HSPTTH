@@ -30,7 +30,7 @@
                            TextColor="#555"/>
                 </VerticalStackLayout>
 
-                <Button Text=""
+                <Button Text="&#xE5CD;"
                         FontFamily="MaterialSymbolsRounded"
                         FontSize="26"
                         BackgroundColor="Transparent"
@@ -40,16 +40,28 @@
             </HorizontalStackLayout>
 
             <!-- TILES -->
-            <Grid ColumnDefinitions="*,*,*"
-                  RowDefinitions="Auto,Auto"
-                  ColumnSpacing="20"
-                  RowSpacing="20">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="15" RowSpacing="15">
 
                 <!-- Quản lý lớp -->
-                <Border Grid.Row="0" Grid.Column="0">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Quản lý lớp" FontAttributes="Bold"/>
+                <Border Grid.Row="0" Grid.Column="0"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#7A3FFF"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE8AF;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Quản lý lớp" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Go_QuanlyLop"/>
@@ -57,10 +69,25 @@
                 </Border>
 
                 <!-- Quản lý môn -->
-                <Border Grid.Row="0" Grid.Column="1">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Quản lý môn" FontAttributes="Bold"/>
+                <Border Grid.Row="0" Grid.Column="1"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#34C759"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE865;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Quản lý môn" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Go_QuanlyMon"/>
@@ -68,10 +95,25 @@
                 </Border>
 
                 <!-- Quản lý giáo viên -->
-                <Border Grid.Row="0" Grid.Column="2">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Quản lý giáo viên" FontAttributes="Bold"/>
+                <Border Grid.Row="1" Grid.Column="0"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#FF9500"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE7EF;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Quản lý giáo viên" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Go_QuanlyGiaovien"/>
@@ -79,21 +121,77 @@
                 </Border>
 
                 <!-- Học sinh -->
-                <Border Grid.Row="1" Grid.Column="0">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Quản lý học sinh" FontAttributes="Bold"/>
+                <Border Grid.Row="1" Grid.Column="1"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#0A66FF"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE7ED;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Quản lý học sinh" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Go_QuanlyHocsinh"/>
                     </Border.GestureRecognizers>
                 </Border>
 
+                <!-- Phân công -->
+                <Border Grid.Row="2" Grid.Column="0"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#5856D6"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE872;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Phân công" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Go_Phancong"/>
+                    </Border.GestureRecognizers>
+                </Border>
+
                 <!-- Báo cáo -->
-                <Border Grid.Row="1" Grid.Column="1">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Báo cáo - thống kê" FontAttributes="Bold"/>
+                <Border Grid.Row="2" Grid.Column="1"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#FF2D55"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE8B8;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Báo cáo" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Go_Baocao"/>

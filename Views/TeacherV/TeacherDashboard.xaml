@@ -10,7 +10,6 @@
 
             <!-- Header -->
             <HorizontalStackLayout Spacing="12">
-
                 <Border BackgroundColor="#FF8A00"
                         WidthRequest="48"
                         HeightRequest="48"
@@ -35,7 +34,7 @@
                            TextColor="#555"/>
                 </VerticalStackLayout>
 
-                <Button Text=""
+                <Button Text="&#xE5CD;"
                         FontFamily="MaterialSymbolsRounded"
                         FontSize="26"
                         BackgroundColor="Transparent"
@@ -44,21 +43,29 @@
                         Clicked="Logout_Clicked"/>
             </HorizontalStackLayout>
 
-
             <!-- Menu Tiles -->
-            <Grid ColumnDefinitions="*,*,*"
-                  RowDefinitions="Auto,Auto"
-                  ColumnSpacing="20"
-                  RowSpacing="20">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="15" RowSpacing="15">
 
                 <!-- Nhập điểm -->
                 <Border Grid.Row="0" Grid.Column="0"
-                        StrokeThickness="0" BackgroundColor="White"
-                        Padding="10" StrokeShape="RoundRectangle 16"
-                        >
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Nhập điểm" FontAttributes="Bold"/>
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#0A66FF"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE86C;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Nhập điểm" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Nhapdiem_Tapped"/>
@@ -67,11 +74,24 @@
 
                 <!-- Lớp phụ trách -->
                 <Border Grid.Row="0" Grid.Column="1"
-                        StrokeThickness="0" BackgroundColor="White"
-                        Padding="10" StrokeShape="RoundRectangle 16">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Lớp phụ trách" FontAttributes="Bold"/>
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#34C759"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE8AF;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Lớp phụ trách" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Lophutrach_Tapped"/>
@@ -79,12 +99,25 @@
                 </Border>
 
                 <!-- Thông báo -->
-                <Border Grid.Row="0" Grid.Column="2"
-                        StrokeThickness="0" BackgroundColor="White"
-                        Padding="10" StrokeShape="RoundRectangle 16">
-                    <VerticalStackLayout HorizontalOptions="Center">
-                        <Label Text="" FontFamily="MaterialSymbolsRounded" FontSize="32"/>
-                        <Label Text="Thông báo" FontAttributes="Bold"/>
+                <Border Grid.Row="1" Grid.Column="0"
+                        Padding="20"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Border BackgroundColor="#FF9500"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 25">
+                            <Label Text="&#xE7C7;" 
+                                   FontFamily="MaterialSymbolsRounded" 
+                                   FontSize="28"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </Border>
+                        <Label Text="Thông báo" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ThongBao_Tapped"/>
